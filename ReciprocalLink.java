@@ -22,8 +22,6 @@ public class ReciprocalLink{
 	    System.out.println("IOExcpetion: " + e);
 	}
 
-	//	ArrayList<Integer> linkPageList = new ArrayList<Integer>();
-	//	ArrayList<Link> linkPageList = new ArrayList<Link>();
 	Link[] linkPageList = new Link[pageList.size()];
 	for(int i = 0; i < linkPageList.length; i++){
 	    linkPageList[i] = new Link();
@@ -40,7 +38,6 @@ public class ReciprocalLink{
 		id1 = Integer.parseInt(page[0]);
 		id2 = Integer.parseInt(page[1]);
 		linkPageList[id1].setLinks(id2);
-		//linkPageList.add(Integer.parseInt(page[0]), Integer.parseInt(page[1]));
 		str = br.readLine();
 	    }
 	    br.close();
@@ -49,8 +46,6 @@ public class ReciprocalLink{
 	} catch(IOException e) {
 	    System.out.println("IOException: " + e);
 	}
-	//System.out.println(linkPageList.size());
-	//System.out.println("finish");
 	System.out.println((linkPageList[0].getLinks()).size());
 	
     }
