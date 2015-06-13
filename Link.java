@@ -1,17 +1,10 @@
-import java.util.*;
-
 public class Link{
-    ArrayList<Integer> links;
+    int id1;
+    int id2;
 
-    Link(){
-	links = new ArrayList<Integer>();
+    Link(int id1, int id2){
+	this.id1 = id1;
+	this.id2 = id2;
     }
 
-    ArrayList<Integer> getLinks(){
-	return links;
-    }
-
-    void setLinks(int id){
-	links.add(id);
-    }
 }
