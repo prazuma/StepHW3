@@ -1,6 +1,9 @@
 # emacs
 *~
 
+# ignore txtfile
+*.txt
+
 *.class
 
 # Mobile Tools for Java (J2ME)
