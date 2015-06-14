@@ -14,31 +14,9 @@ public class ReciprocalLink{
 
 	int[] counter = countReciprocal(linkPageTable);
 	System.out.println("finish count reciprocal");
-
-	try {
-	    File file = new File("result.csv");
-	    FileWriter fw = new FileWriter(file);
-	    BufferedWriter bw = new BufferedWriter(fw);
-	    double rate;
-	    double size;
-	    for(int i = 0; i < pageSize; i++){
-		bw.write(pageTable[i] + ",");
-		size = (double)linkPageTable[i].getSize();
-		if(counter[i] == 0){
-		    rate = 0;
-		} else {
-		    rate = counter[i] / size * 100;
-		}
-		bw.write(String.valueOf(rate));
-		bw.newLine();
-	    }
-	    bw.flush();
-	    bw.close();
-	    fw.close();
-	} catch(IOException e) {
-	    e.printStackTrace();
-	}
-
+        
+	writeCSVFile(linkPageTable, pageTable, counter);
+	System.out.println("made result.csv");
     }
 
     static String[] readPages(){
@@ -62,6 +40,32 @@ public class ReciprocalLink{
 	    System.out.println("IOExcpetion: " + e);
 	}
 	return pageTable;
+    }
+
+    static void writeCSVFile(Link[] linkPageTable, String[] pageTable, int[] counter){
+	try {
+	    File file = new File("result.csv");
+	    FileWriter fw = new FileWriter(file);
+	    BufferedWriter bw = new BufferedWriter(fw);
+	    double rate;
+	    double size;
+	    for(int i = 0; i < pageSize; i++){
+		bw.write(pageTable[i] + ",");
+		size = (double)linkPageTable[i].getSize();
+		if(counter[i] == 0){
+		    rate = 0;
+		} else {
+		    rate = counter[i] / size * 100;
+		}
+		bw.write(String.valueOf(rate));
+		bw.newLine();
+	    }
+	    bw.flush();
+	    bw.close();
+	    fw.close();
+	} catch(IOException e) {
+	    e.printStackTrace();
+	}
     }
 
     static Link[] readLinks(){
