@@ -1,10 +1,18 @@
-public class Link{
-    int id1;
-    int id2;
+import java.util.*;
 
-    Link(int id1, int id2){
-	this.id1 = id1;
-	this.id2 = id2;
+public class Link{
+    ArrayList<Integer> list;
+    
+    Link(){
+	list = new ArrayList<Integer>();
+    }
+
+    void addLink(int id){
+	list.add(id);
+    }
+
+    ArrayList<Integer> getList(){
+	return list;
     }
 
 }
