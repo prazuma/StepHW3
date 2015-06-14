@@ -5,8 +5,8 @@ public class ReciprocalLink{
     static int pageSize = 1483277;
     
     public static void main(String[] args){
-	
-	String[] pageTable = readPages();
+	FileIO fileIO = new FileIO();
+	String[] pageTable = fileIO.readPages();
 	System.out.println("finish read pages.txt");
 
 	Link[] linkPageTable = readLinks();
