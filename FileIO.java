@@ -6,14 +6,14 @@ public class FileIO{
     
     String[] readPages(){//pages.txtを読み込む
 	String[] pageTable = new String[pageSize];
-	int n = 0;
+	int n = 0;//作業用変数
 	try {
 	    File file = new File("pages.txt");
 	    BufferedReader br = new BufferedReader(new FileReader(file));
 	    String str = br.readLine();
 	    String[] page = new String[2];
 	    while(str != null){//n番目の配列にn番目のページ名を格納
-		page = str.split("\t");
+		page = str.split("\t");//タブで区切る
 		pageTable[n] = page[1];
 		n++;
 		str = br.readLine();
@@ -41,9 +41,9 @@ public class FileIO{
 	    int id1;
 	    int id2;
 	    while(str != null){//id1番のリンクをid1番目の第2次配列に入れる（本当は、リストに入れてる）
-		page = str.split("\t");
-		id1 = Integer.parseInt(page[0]);
-		id2 = Integer.parseInt(page[1]);
+		page = str.split("\t");//タブで区切る
+		id1 = Integer.parseInt(page[0]);//文字列を数値に
+		id2 = Integer.parseInt(page[1]);//文字列を数値に
 		linkPageTable[id1].addLink(id2);
 		m++;
 		str = br.readLine();
