@@ -56,4 +56,30 @@ public class FileIO{
 	}
 	return linkPageTable;
     }
+    
+    void writeCSVFile(Link[] linkPageTable, String[] pageTable, int[] counter){
+	try {
+	    File file = new File("result.csv");
+	    FileWriter fw = new FileWriter(file);
+	    BufferedWriter bw = new BufferedWriter(fw);
+	    double rate;
+	    double size;
+	    for(int i = 0; i < pageSize; i++){
+		bw.write(pageTable[i] + ",");
+		size = (double)linkPageTable[i].getSize();
+		if(counter[i] == 0){
+		    rate = 0;
+		} else {
+		    rate = counter[i] / size * 100;
+		}
+		bw.write(String.valueOf(rate));
+		bw.newLine();
+	    }
+	    bw.flush();
+	    bw.close();
+	    fw.close();
+	} catch(IOException e) {
+	    e.printStackTrace();
+	}
+    }
 }
