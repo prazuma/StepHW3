@@ -2,7 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class ReciprocalLink{
-    static int pageSize = 1483277;
+      static int pageSize = 1483277;
+    //      static int pageSize = 3;
     public static void main(String[] args){
 	/*
 	int pageSize = 1483277;
@@ -10,41 +11,92 @@ public class ReciprocalLink{
 	*/
 	
 	String[] pageTable = readPages();
-	System.out.println("finish1");
+	System.out.println("finish read pages.txt");
 
 	Link[] linkPageTable = readLinks();
-	System.out.println("finish2");
+	System.out.println("finish read links.txt");
 
+	/*
+	//	for(int i = 0; i< pageSize; i++){
+	    ArrayList<Integer> test = linkPageTable[10].getList();
+	    for(int j = 0; j < test.size(); j++){
+		System.out.println(test.get(j));
+	    }
+	    //	}
+	    */
 	int[] counter = new int[pageSize];
 	for(int i = 0; i < pageSize; i++){
 	    ArrayList<Integer> list = linkPageTable[i].getList();
 	    for(int j = 0; j < list.size(); j++){
-		int id2 = list.get(j);
-		ArrayList<Integer> list2 = linkPageTable[id2].getList();
+		int link = list.get(j);
+		ArrayList<Integer> list2 = linkPageTable[link].getList();
 		if(list2.contains(i)){
 		    counter[i]++;
 		}
 	    }
 	}
-	System.out.println("finish3");
-
+	System.out.println("finish count reciprocal");
+	/*
+	for(int i = 0; i< pageSize; i++){
+	    ArrayList<Integer> list = linkPageTable[i].getList();
+	    for(int j = 0; j < list.size(); j++){
+		System.out.println(list.get(j));
+	    }
+	}
+	*/
+	try {
+	    File file = new File("result.csv");
+	    FileWriter fw = new FileWriter(file);
+	    BufferedWriter bw = new BufferedWriter(fw);
+	    double rate;
+	    double size;
+	    for(int i = 0; i < pageSize; i++){
+		bw.write(pageTable[i] + ",");
+		size = (double)linkPageTable[i].getSize();
+		if(counter[i] == 0){
+		    rate = 0;
+		} else {
+		    rate = counter[i] / size * 100;
+		}
+		//rate = counter[i] / linkPageTable[i].getSize() * 100;
+		bw.write(String.valueOf(rate));
+		//bw.write(counter[i] + ",");
+		//bw.write(String.valueOf(size));
+		bw.newLine();
+	    }
+	    bw.flush();
+	    bw.close();
+	    fw.close();
+	} catch(IOException e) {
+	    e.printStackTrace();
+	}
+	
+	/*
 	int max = 0;
 	int id = 0;
 	for(int i = 0; i < pageSize; i++){
-	    if(max < counter[i]){
-		max = counter[i];
+	    if(linkPageTable[i].getSize() == 0)continue;
+	    int rate = counter[i] / linkPageTable[i].getSize() * 100;
+	    if(max < rate){
+		max = rate;
 		id = i;
 	    }
 	}
 	System.out.println(pageTable[id] + ": " + max);
-	
+	*/
+	/*
+	for(int i = 0; i < 3; i++){
+	    System.out.println(counter[i]);
+	    System.out.println(linkPageTable[i].getSize());
+	}
+	*/
     }
 
     static String[] readPages(){
 	String[] pageTable = new String[pageSize];
 	int n = 0;
 	try {
-	    File file = new File("test.txt");
+	    File file = new File("pages.txt");
 	    BufferedReader br = new BufferedReader(new FileReader(file));
 	    String str = br.readLine();
 	    String[] page = new String[2];
@@ -70,7 +122,7 @@ public class ReciprocalLink{
 	}
 	int m = 0;
 	try {
-	    File file = new File("test2.txt");
+	    File file = new File("links.txt");
 	    BufferedReader br = new BufferedReader(new FileReader(file));
 	    String str = br.readLine();
 	    String[] page = new String[2];

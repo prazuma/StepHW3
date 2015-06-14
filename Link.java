@@ -15,4 +15,8 @@ public class Link{
 	return list;
     }
 
+    int getSize(){
+	return list.size();
+    }
+
 }
