@@ -28,6 +28,9 @@ public class ReciprocalLink{
 	int[] counter = countReciprocal(linkPageTable);
 	System.out.println("finish count reciprocal");
 
+	/*
+	  find rate
+	 */
 	double[] rate = new double[pageSize];
 	double size;
 	for(int i = 0; i < pageSize; i++){
@@ -39,14 +42,19 @@ public class ReciprocalLink{
 	    }
 	}
 
+	/*
+	  merge rate & pageTable
+	  rateList[i] has PageName and its rate
+	 */
 	Rate[] rateList = new Rate[pageSize];
 	for(int i = 0; i < pageSize; i++){
-	    rateList[i] = new Rate(pageTable[i], counter[i]);
+	    rateList[i] = new Rate(pageTable[i], rate[i]);
 	}
+
 	/*
 	  write result.csv
 	 */
-	fileIO.writeCSVFile(linkPageTable, pageTable, rate);
+	fileIO.writeCSVFile(rateList);
 	System.out.println("made result.csv");
     }
 

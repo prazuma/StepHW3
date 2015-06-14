@@ -1,9 +1,13 @@
-public class Rate{
+import java.util.*;
+class Rate{
     String name;
-    int rate;
+    double rate;
 
-    Rate(String name, int rate){
+    Rate(String name, double rate){
 	this.name = name;
 	this.rate = rate;
     }
+
 }
+
+

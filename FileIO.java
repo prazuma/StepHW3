@@ -57,7 +57,7 @@ public class FileIO{
 	return linkPageTable;
     }
     
-    void writeCSVFile(Link[] linkPageTable, String[] pageTable, double[] rate){
+    void writeCSVFile1(Link[] linkPageTable, String[] pageTable, double[] rate){
 	try {
 	    File file = new File("result.csv");
 	    FileWriter fw = new FileWriter(file);
@@ -65,6 +65,23 @@ public class FileIO{
 	    for(int i = 0; i < pageSize; i++){
 		bw.write(pageTable[i] + ",");
 		bw.write(String.valueOf(rate[i]));
+		bw.newLine();
+	    }
+	    bw.flush();
+	    bw.close();
+	    fw.close();
+	} catch(IOException e) {
+	    e.printStackTrace();
+	}
+    }
+    void writeCSVFile(Rate[] rate){
+	try {
+	    File file = new File("result.csv");
+	    FileWriter fw = new FileWriter(file);
+	    BufferedWriter bw = new BufferedWriter(fw);
+	    for(int i = 0; i < pageSize; i++){
+		bw.write(rate[i].name + ",");
+		bw.write(String.valueOf(rate[i].rate));
 		bw.newLine();
 	    }
 	    bw.flush();
