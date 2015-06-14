@@ -1,6 +1,8 @@
 # emacs
 *~
 
+.DS_Store
+
 # ignore txtfile
 *.txt
 
